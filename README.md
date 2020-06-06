@@ -14,11 +14,13 @@
     <img src="https://img.shields.io/static/v1?label=React&message=Native&color=blue?style=plastic&logo=React" alt="React-Native" />
   </a>
 </p>
+<p align="center">
+<img src="https://github.com/RBalconi/ecoleta/blob/master/devices-ecoleta.png" alt="Aparelho exibindo o app/website"/>
+</p>
 
 
-  
 ## Sobre
-Ecoleta é um projeto feito apatir de estudos pela [Rocketseat](https://github.com/Rocketseat), durante o evento Next Level Week #01, durante a primeira semana de junho de 2020.
+Ecoleta é um projeto feito apatir de estudos pela [Rocketseat](https://rocketseat.com.br/), durante o evento Next Level Week #01, durante a primeira semana de junho de 2020.
 
 ## Tecnologias usadas
 Durante toda a aplicação fou usado [React](https://github.com/facebook/react).
