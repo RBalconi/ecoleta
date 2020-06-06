@@ -20,10 +20,10 @@
 
 
 ## Sobre
-Ecoleta é um projeto feito apatir de estudos pela [Rocketseat](https://rocketseat.com.br/), durante o evento Next Level Week #01, durante a primeira semana de junho de 2020.
+Ecoleta é um projeto feito a patir de estudos pela [Rocketseat](https://rocketseat.com.br/), durante o evento Next Level Week #01, durante a primeira semana de junho de 2020.
 
 ## Tecnologias usadas
-Durante toda a aplicação foi usado [React](https://github.com/facebook/react).
+Durante toda a aplicação foi usado o [React](https://github.com/facebook/react).
 * No back-end usamos o [NodeJS](https://nodejs.org/en/)
 * Na web foi usado o [ReactJS](https://reactjs.org/)
 * No mobile usamos o [React-Native](https://reactnative.dev/)
