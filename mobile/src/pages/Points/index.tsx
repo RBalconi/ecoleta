@@ -46,6 +46,8 @@ const Points = () => {
     0,
   ]);
 
+  const [selectAllItems, setSelectAllItems] = useState<number[]>([]);
+
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -61,7 +63,9 @@ const Points = () => {
         );
         return;
       }
-      const location = await Location.getCurrentPositionAsync();
+      const location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.High,
+      });
       const { latitude, longitude } = location.coords;
       setInitialPosition([latitude, longitude]);
     }
@@ -97,6 +101,22 @@ const Points = () => {
       setSelectedItems(filteredItems);
     } else {
       setSelectedItems([...selectedItems, id]);
+    }
+  }
+
+  function handleSelectAllItems() {
+    const alreadySelectedAll = selectedItems.filter(
+      (result) => items.includes(result) >= 0
+    );
+
+    if (alreadySelectedAll.length > 0) {
+      const filteredItems = selectedItems.filter(
+        (result) => !alreadySelectedAll.includes(result)
+      );
+      setSelectedItems(filteredItems);
+    } else {
+      const ids = items.map((item) => item.id);
+      setSelectedItems(ids);
     }
   }
 
@@ -151,18 +171,34 @@ const Points = () => {
                     />
                     <Text style={styles.mapMarkerTitle}>{point.name}</Text>
                   </View>
+                  <Feather
+                    style={styles.iconPin}
+                    name="chevron-down"
+                    size={40}
+                    color="#34cb79"
+                  />
                 </Marker>
               ))}
             </MapView>
           )}
         </View>
       </View>
-      <View style={styles.itemsContainer}>
+
+      <View>
+        <View style={styles.barFooterContainer}>
+          <TouchableOpacity
+            style={[styles.buttonFooterContainer]}
+            onPress={() => handleSelectAllItems()}
+          >
+            <Text>Selecionar todos</Text>
+          </TouchableOpacity>
+        </View>
         <ScrollView
+          style={styles.itemsContainer}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
-            paddingHorizontal: 20,
+            paddingHorizontal: 32,
           }}
         >
           {items.map((item) => (
@@ -244,6 +280,25 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 13,
     lineHeight: 23,
+  },
+
+  iconPin: {
+    marginTop: -20,
+    paddingLeft: 25,
+  },
+
+  barFooterContainer: {
+    paddingHorizontal: 32,
+    flexWrap: "wrap",
+  },
+
+  buttonFooterContainer: {
+    backgroundColor: "#FFF",
+    borderWidth: 2,
+    borderColor: "#eee",
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 8,
   },
 
   itemsContainer: {
