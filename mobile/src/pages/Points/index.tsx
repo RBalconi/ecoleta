@@ -104,20 +104,25 @@ const Points = () => {
     }
   }
 
-  function handleSelectAllItems() {
-    const alreadySelectedAll = selectedItems.filter(
-      (result) => items.includes(result) >= 0
-    );
+  // function handleSelectAllItems() {
+  //   const alreadySelectedAll = selectedItems.filter(
+  //     (result) => items.includes(result) >= 0
+  //   );
 
-    if (alreadySelectedAll.length > 0) {
-      const filteredItems = selectedItems.filter(
-        (result) => !alreadySelectedAll.includes(result)
-      );
-      setSelectedItems(filteredItems);
-    } else {
-      const ids = items.map((item) => item.id);
-      setSelectedItems(ids);
-    }
+  //   if (alreadySelectedAll.length > 0) {
+  //     const filteredItems = selectedItems.filter(
+  //       (result) => !alreadySelectedAll.includes(result)
+  //     );
+  //     setSelectedItems(filteredItems);
+  //   } else {
+  //     const ids = items.map((item) => item.id);
+  //     setSelectedItems(ids);
+  //   }
+  // }
+
+  function handleSelectAllItems() {
+    const ids = items.map((item) => item.id);
+    setSelectedItems(ids);
   }
 
   function handleNavigateBack() {
