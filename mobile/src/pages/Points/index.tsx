@@ -97,32 +97,22 @@ const Points = () => {
 
     if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter((item) => item !== id);
-
       setSelectedItems(filteredItems);
     } else {
       setSelectedItems([...selectedItems, id]);
     }
   }
 
-  // function handleSelectAllItems() {
-  //   const alreadySelectedAll = selectedItems.filter(
-  //     (result) => items.includes(result) >= 0
-  //   );
-
-  //   if (alreadySelectedAll.length > 0) {
-  //     const filteredItems = selectedItems.filter(
-  //       (result) => !alreadySelectedAll.includes(result)
-  //     );
-  //     setSelectedItems(filteredItems);
-  //   } else {
-  //     const ids = items.map((item) => item.id);
-  //     setSelectedItems(ids);
-  //   }
-  // }
-
   function handleSelectAllItems() {
-    const ids = items.map((item) => item.id);
-    setSelectedItems(ids);
+    const alreadySelectedAll = selectedItems.findIndex((item) => item);
+
+    if (alreadySelectedAll >= 0) {
+      const filteredItems = selectedItems.filter((result) => !result);
+      setSelectedItems(filteredItems);
+    } else {
+      const ids = items.map((item) => item.id);
+      setSelectedItems(ids);
+    }
   }
 
   function handleNavigateBack() {
@@ -192,10 +182,17 @@ const Points = () => {
       <View>
         <View style={styles.barFooterContainer}>
           <TouchableOpacity
-            style={[styles.buttonFooterContainer]}
+            style={[
+              styles.buttonFooterContainer,
+              selectedItems.length >= items.length ? styles.selectedItem : {},
+            ]}
             onPress={() => handleSelectAllItems()}
           >
-            <Text>Selecionar todos</Text>
+            {selectedItems.length >= items.length ? (
+              <Text>Deselecionar todos</Text>
+            ) : (
+              <Text>Selecionar todos</Text>
+            )}
           </TouchableOpacity>
         </View>
         <ScrollView
